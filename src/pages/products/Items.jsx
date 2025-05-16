@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import Card from '../components/Card'
+import Card from '../../components/Card'
 
 const API = 'https://fakestoreapi.com/products'
 
