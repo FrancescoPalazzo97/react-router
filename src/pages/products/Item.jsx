@@ -10,8 +10,7 @@ const Item = () => {
     const API = `https://fakestoreapi.com/products`
     const [items, setItems] = useState(null);
     const [item, setItem] = useState(null);
-
-    let maxLength = null;
+    const [maxLength, setMaxLength] = useState(null);
 
     const getItems = () => {
         axios.get(API)
@@ -26,15 +25,15 @@ const Item = () => {
 
     useEffect(() => {
         getItems();
-    }, [id])
+    }, [])
 
     useEffect(() => {
-        if (items.length) {
+        if (items != null) {
             const itemFound = items.find((item) => item.id === id);
             setItem(itemFound);
-            maxLength = items.length;
+            setMaxLength(items.length);
         }
-    }, [items])
+    }, [id, items])
 
     const navigate = useNavigate();
 
@@ -45,8 +44,6 @@ const Item = () => {
     const handleForward = () => {
         navigate(`/items/${id + 1}`);
     }
-
-
 
     return (
         <main className='bg-dark text-light'>
