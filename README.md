@@ -31,3 +31,38 @@ Creiamo il frontend del nostro Blog e le sue pagine!
 ---
 
 👨‍💻 **Buon Lavoro!**
+
+---
+
+# Ciao Ragazzi
+
+## Esercizio di oggi: **React Blog Pages (2)**
+
+**Repo:** `react-router` *(stessa di ieri)*
+
+---
+
+### 📋 Consegna
+
+Completiamo il nostro **routing** con l’aggiunta delle pagine di dettaglio!
+
+- Aggiungiamo i **link** nella lista dei post.
+- Facciamo in modo di raggiungere la **pagina di dettaglio** del singolo post.
+
+---
+
+### 📌 Numero minimo di push:
+
+**7**
+
+---
+
+### 🎁 Bonus
+
+- Centralizzare la **Navbar** grazie a un **Layout**.
+- Inserire nella pagina di dettaglio una navigazione che consenta di andare al **post precedente** e a quello **successivo**.
+
+---
+
+**Buon Lavoro!** 🎉
+

@@ -3,12 +3,14 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Card from '../components/Card'
 
+const API = 'https://fakestoreapi.com/products'
+
 const Items = () => {
 
     const [items, setItems] = useState(null);
 
     useEffect(() => {
-        axios.get('https://fakestoreapi.com/products')
+        axios.get(API)
             .then(res => {
                 console.log(res.data);
                 setItems(res.data);
@@ -27,12 +29,12 @@ const Items = () => {
                         <div className="row g-5">
                             {
                                 items === null ? (
-                                    <div className="col-12">
-                                        <span class="loader"></span>
+                                    <div className="col-12 overlay d-flex justify-content-center align-items-center">
+                                        <span className="loader"></span>
                                     </div>
                                 ) : (
                                     items.map((item) => (
-                                        <Card item={item} />
+                                        <Card item={item} key={`card-${item.id}`} />
                                     ))
                                 )
                             }

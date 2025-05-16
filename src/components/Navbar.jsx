@@ -10,8 +10,8 @@ const Navbar = () => {
                 <img src="/react.svg" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        {links.map((link, index) => (
-                            <Link link={link} i={index} />
+                        {links.map((link, i) => (
+                            <Link link={link} key={`link-${i}`} />
                         ))}
                     </ul>
                 </div>

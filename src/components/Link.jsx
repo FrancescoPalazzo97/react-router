@@ -6,7 +6,7 @@ const Link = ({ link, i }) => {
     const { name, path } = link
 
     return (
-        <li className="nav-item" key={`link-${i}`}>
+        <li className="nav-item">
             <NavLink to={path} className="nav-link" aria-current="page">{name}</NavLink>
         </li>
     )
