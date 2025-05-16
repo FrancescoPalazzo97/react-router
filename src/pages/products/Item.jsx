@@ -2,17 +2,22 @@ import React, { use } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Item = () => {
-    const { id } = useParams();
-    const API = `https://fakestoreapi.com/products/${id}`
+    let { id } = useParams();
+    id = parseInt(id);
+    const API = `https://fakestoreapi.com/products`
+    const [items, setItems] = useState(null);
     const [item, setItem] = useState(null);
 
-    const getItem = () => {
+    let maxLength = null;
+
+    const getItems = () => {
         axios.get(API)
             .then(res => {
                 console.log(res.data);
-                setItem(res.data);
+                setItems(res.data);
             })
             .catch(err => {
                 console.log(err);
@@ -20,16 +25,28 @@ const Item = () => {
     }
 
     useEffect(() => {
-        getItem();
-    }, [])
+        getItems();
+    }, [id])
 
-    if (item === null) {
-        return (
-            <div className="col-12 overlay d-flex justify-content-center align-items-center">
-                <span className="loader"></span>
-            </div>
-        )
+    useEffect(() => {
+        if (items.length) {
+            const itemFound = items.find((item) => item.id === id);
+            setItem(itemFound);
+            maxLength = items.length;
+        }
+    }, [items])
+
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate(`/items/${id - 1}`);
     }
+
+    const handleForward = () => {
+        navigate(`/items/${id + 1}`);
+    }
+
+
 
     return (
         <main className='bg-dark text-light'>
@@ -51,6 +68,14 @@ const Item = () => {
                                         <p>{item.description}</p>
                                         <p>${item.price}</p>
                                         <p>{item.category}</p>
+                                    </div>
+                                </div>
+                                <div className="row mt-5">
+                                    <div className="col-12">
+                                        <div className="d-flex justify-content-between">
+                                            <button className='btn btn-primary' onClick={handleBack} disabled={id === 1}>Precedente</button>
+                                            <button className='btn btn-primary' onClick={handleForward} disabled={id === maxLength}>Successivo</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
